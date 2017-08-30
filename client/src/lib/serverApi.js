@@ -1,3 +1,5 @@
+// File doesn't know anything about state
+
 const getAllProducts = (callback) => {
   const options = {
     method: 'GET'
