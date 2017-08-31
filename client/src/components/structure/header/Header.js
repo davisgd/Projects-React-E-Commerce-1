@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import NavItem from './navItem'
 
 const styles = {
   header: {
@@ -32,9 +32,13 @@ const Header = () =>
     <h3 style={ styles.h3 }>Hello from Header!</h3>
     <nav>
       &nbsp;&nbsp;
-      <NavLink to='/' exact style={ styles.active }>Home</NavLink>
+      <NavItem to='/'>Home</NavItem>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <NavLink to='/about' style={ styles.active }>About</NavLink>
+
+      <NavItem to='/about'>About</NavItem>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+
+      <NavItem to='/products'>Products</NavItem>
     </nav>
   </header>
 
