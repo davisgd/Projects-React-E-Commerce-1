@@ -13,7 +13,10 @@ const ProductList = (props) =>
 
     <Link to='/products/add'>Add a New Product</Link>
 
-    { props.domainData.products.map(product => <ProductCard product={ product } />) }
+    { props.domainData.products.map(product => <ProductCard 
+      key={product._id}
+      product={ product }
+      onDelete={() =>} />) }
   </div>
 
 ProductList.propTypes = propTypes

@@ -6,7 +6,16 @@ const propTypes = {
 }
 
 const AddProduct = (props) =>
-  <h3>Add Product</h3>
+  <form>
+    Name: <input type='text'
+      onChange={props.onNameChanged} />
+    Category: <input type='text'
+      onChange={ props.onCategoryChanged } />
+    Image: <input type='text'
+      onChange={ props.onImageChanged } />
+    Price: <input type='number'
+      onChange={ props.onPriceChanged } />
+  </form>
 
 AddProduct.propTypes = propTypes
 
