@@ -20,7 +20,7 @@ class DomainDataProvider extends Component {
       }))
 
   addProduct = (product) =>
-    ServerApi.addProduct(newProduct, this.getAllProducts)
+    ServerApi.addProduct(product, this.getAllProducts)
 
   deleteProduct = (product) =>
     ServerApi.deleteProduct(product, this.getAllProducts)
@@ -28,13 +28,14 @@ class DomainDataProvider extends Component {
   updateProduct = (product) =>
     ServerApi.updateProduct(product, this.getAllProducts)
 
-  findProductById = (products) => this.state.products.find(p => p._id === productId)
+  findProductById = (productId) => this.state.products.find(p => p._id === productId)
 
   render () {
     const domainData = {
       isLoaded: this.state.isLoaded,
       products: this.state.products,
       addProduct: this.addProduct,
+      deleteProduct: this.deleteProduct,
       findProductById: this.findProductById
     }
 

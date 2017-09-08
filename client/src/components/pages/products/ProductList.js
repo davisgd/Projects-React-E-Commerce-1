@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import * as AppPropTypes from '../../lib/propTypes'
+import * as AppPropTypes from '../../../lib/propTypes'
 import ProductCard from './ProductCard'
 
 const propTypes = {
@@ -16,7 +16,7 @@ const ProductList = (props) =>
     { props.domainData.products.map(product => <ProductCard 
       key={product._id}
       product={ product }
-      onDelete={() =>} />) }
+      onDelete={() => props.domainData.deleteProduct(product)} />) }
   </div>
 
 ProductList.propTypes = propTypes

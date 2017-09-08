@@ -1,8 +1,9 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import * as AppPropTypes from '../../lib/propTypes'
+import * as AppPropTypes from '../../../lib/propTypes'
 import ProductList from './ProductList'
-import AddProduct from './AddProduct'
+import AddProductContainer from './AddProductContainer'
+import EditProductContainer from './EditProductContainer'
 
 const propTypes = {
   domainData: AppPropTypes.domainData
@@ -14,19 +15,19 @@ const Products = (props) =>
 
     <Route 
       path='/products' exact 
-      render={() => <ProductList domainData={ props.domainData } />} 
+      render={ () => <ProductList domainData={ props.domainData } /> } 
     />
     <Route
       path='/products/add' exact 
-      render={() => <AddProduct domainData={ props.domainData } />} 
+      render={ () => <AddProductContainer domainData={ props.domainData } /> } 
     />
     <Route 
       path='/products/edit/productId' 
-      render={(routeProps) => 
+      render={ (routeProps) => 
         <EditProductContainer 
           domainData={ props.domainData } 
           history={ routeProps.history } 
-          match={ routeProps.match } />}
+          match={ routeProps.match } /> }
     />
   </div>
 

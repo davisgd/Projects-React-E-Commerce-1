@@ -26,7 +26,7 @@ export const addProduct = (newProduct, callback) => {
     .then(json => callback(json.data))
 }
 
-export const deleteProduct = (productId, callback) => {
+export const deleteProduct = (product, callback) => {
   const options = {
     method: 'DELETE'
   }
