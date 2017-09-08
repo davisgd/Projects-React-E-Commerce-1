@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { domainData } from '../../../lib/propTypes'
 import AddProductForm from './AddProductForm'
+import { withRouter } from 'react-router-dom'
 
 class AddProductContainer extends Component {
     static propTypes = {
@@ -49,4 +50,4 @@ class AddProductContainer extends Component {
     }
 }
 
-export default AddProductContainer
+export default withRouter(AddProductContainer)

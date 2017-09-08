@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const styles = {
   active: {
@@ -11,8 +12,8 @@ const styles = {
 }
 
 const propTypes = {
-  to: propTypes.string.isRequired,
-  children: propTypes.string.isRequired
+  to: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired
 }
 
 const NavItem = (props) =>

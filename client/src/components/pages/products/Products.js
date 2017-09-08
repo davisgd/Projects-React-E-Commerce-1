@@ -22,7 +22,7 @@ const Products = (props) =>
       render={ () => <AddProductContainer domainData={ props.domainData } /> } 
     />
     <Route 
-      path='/products/edit/productId' 
+      path='/products/edit/:productId' 
       render={ (routeProps) => 
         <EditProductContainer 
           domainData={ props.domainData } 

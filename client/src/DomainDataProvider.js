@@ -34,6 +34,7 @@ class DomainDataProvider extends Component {
     const domainData = {
       isLoaded: this.state.isLoaded,
       products: this.state.products,
+      updateProduct: this.updateProduct,
       addProduct: this.addProduct,
       deleteProduct: this.deleteProduct,
       findProductById: this.findProductById

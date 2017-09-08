@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import * as AppPropTypes from '../../../lib/propTypes'
 import EditProductForm from './EditProductForm'
+import { withRouter } from 'react-router-dom'
 
 class EditProductContainer extends Component {
   static propTypes = {
@@ -41,9 +42,14 @@ class EditProductContainer extends Component {
   }
 
   render () {
-    return <EditProductForm 
-      />
+    return <EditProductForm
+      onNameChanged={ this.onNameChanged }
+      onCategoryChanged={ this.onCategoryChanged }
+      onImageChanged={ this.onImageChanged }
+      onPriceChanged={ this.onPriceChanged }
+      onSubmit={ this.onSubmit }
+    />
   }
 }
 
-export default EditProductContainer
+export default withRouter(EditProductContainer)

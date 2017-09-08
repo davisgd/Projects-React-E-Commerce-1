@@ -6,13 +6,16 @@ const propTypes = {
 }
 
 const EditProductForm = (props) =>
-  <form>
-    Name: <input type='text' />
-    Category: <input type='text' />
-    Image: <input type='text' />
-    Price: <input type='text' />
+  <form onSubmit={ (event) => props.onSubmit(event)}>
+    Name: <input type='text' onChange={ props.onNameChanged } />
+    Category: <input type='text' onChange={ props.onCategoryChanged } />
+    Image: <input type='text' onChange={ props.onImageChanged } />
+    Price: <input type='text' onChange={ props.onPriceChanged } />
+    <button type='submit'>
+      Submit
+    </button>
   </form>
 
 EditProductForm.propTypes = propTypes
   
-  export default EditProductForm
+export default EditProductForm
