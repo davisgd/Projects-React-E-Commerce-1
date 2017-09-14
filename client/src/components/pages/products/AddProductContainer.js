@@ -6,15 +6,15 @@ import { withRouter } from 'react-router-dom'
 
 class AddProductContainer extends Component {
     static propTypes = {
-        domainData,
-        history: PropTypes.object.isRequired
+      domainData,
+      history: PropTypes.object.isRequired
     }
 
     state = {
-        name: '',
-        category: '',
-        image: '',
-        price: 0
+      name: '',
+      category: '',
+      image: '',
+      price: 0
     }
 
     onNameChanged = (event) => this.setState({ name: event.target.value })
@@ -26,27 +26,27 @@ class AddProductContainer extends Component {
     onPriceChanged = (event) => this.setState({ price: event.target.value })
 
     onSubmit = (event) => {
-        event.preventDefault()
-        this.props.domainData.addProduct(this.state)
-        this.props.history.push('/products')
+      event.preventDefault()
+      this.props.domainData.addProduct(this.state)
+      this.props.history.push('/products')
     }
 
     onCancel = (event) => {
-        event.preventDefault()
-        this.props.history.push('/products')
+      event.preventDefault()
+      this.props.history.push('/products')
     }
 
-    render() {
-        return (
-            <AddProductForm
-                onNameChanged={this.onNameChanged}
-                onCategoryChanged={this.onCategoryChanged}
-                onImageChanged={this.onImageChanged}
-                onPriceChanged={this.onPriceChanged}
-                onSubmit={this.onSubmit}
-                onCancel={this.onCancel}
-            />
-        )
+    render () {
+      return (
+        <AddProductForm
+          onNameChanged={this.onNameChanged}
+          onCategoryChanged={this.onCategoryChanged}
+          onImageChanged={this.onImageChanged}
+          onPriceChanged={this.onPriceChanged}
+          onSubmit={this.onSubmit}
+          onCancel={this.onCancel}
+        />
+      )
     }
 }
 

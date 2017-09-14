@@ -1,59 +1,66 @@
 // File doesn't know anything about state
-
-const getAllProducts = (callback) => {
-  const options = {
-    method: 'GET'
-  }
-
-  fetch('/api/products', options)
-    .then(response => response.json())
-    .then(json => callback(json.data))
-}
-
-export const addProduct = (newProduct, callback) => {
-  const headers = new Headers ({
-    'Content-Type': 'application/json'
-  })
-
-  const options = {
-    headers: headers,
-    method: 'POST',
-    body: JSON.stringify(newProduct)
-  }
-
-  fetch('/api/products', options)
-    .then(response => response.json())
-    .then(json => callback(json.data))
-}
-
-export const deleteProduct = (product, callback) => {
-  const options = {
-    method: 'DELETE'
-  }
-
-  fetch(`/api/products/${product._id}`, options)
-    .then(response => response.json())
-    .then(json => callback(json.data))
-}
-
-export const updateProduct = (product, callback) => {
+const ajaxRequest = (uri, method, body) => {
   const headers = new Headers({
     'Content-Type': 'application/json'
   })
 
   const options = {
     headers: headers,
-    method: 'PUT',
-    body: JSON.stringify(product)
+    method: method,
+    body: JSON.stringify(body)
   }
 
-  fetch(`/api/products/${product._id}`, options)
+  return fetch(`/api/${uri}`, options)
     .then(response => response.json())
-    .then(json => {
-      console.log(json)
-      return json
-    })
-    .then(json => callback(json.data))
+    .then(json => json.data)
 }
 
-export { getAllProducts }
+export const getAllProducts = () => ajaxRequest('products', 'GET')
+
+export const addProduct = (newProduct) => ajaxRequest('products', 'POST', newProduct)
+
+export const deleteProduct = (productId) => ajaxRequest(`products/${productId}`, 'DELETE')
+
+export const updateProduct = (product) => ajaxRequest(`/api/products/${product._id}`, 'PUT', product)
+
+export const signUpUser = (user) => {
+  const headers = new Headers({
+    'Content-Type': 'application/json'
+  })
+
+  const options = {
+    headers,
+    method: 'POST',
+    body: JSON.stringify(user)
+  }
+
+  return fetch('api/signup', options)
+    .then(response => response.json())
+    .then(json => json.data)
+    .then(data => {
+      console.log(data)
+      return data
+    })
+    .catch(err => console.log(err))
+}
+
+export const loginUser = (email, password) => {
+  const headers = new Headers({
+    'Content-Type': 'application/json'
+  })
+
+  const options = {
+    headers,
+    method: 'POST',
+    body: JSON.stringify({email, password})
+  }
+
+  return fetch('api/login', options)
+    .then(response => response.json())
+    .then(json => json.data)
+    .then(data => {
+      console.log(data)
+      return data
+    })
+    .catch(err => console.log(err))
+}

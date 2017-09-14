@@ -39,6 +39,12 @@ const Header = () =>
       &nbsp;&nbsp;&nbsp;&nbsp;
 
       <NavItem to='/products'>Products</NavItem>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+
+      <NavItem to='/signup'>Sign Up New User</NavItem>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+
+      <NavItem to='/login'>Login</NavItem>
     </nav>
   </header>
 

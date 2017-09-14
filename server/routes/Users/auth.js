@@ -16,7 +16,7 @@ module.exports = (app, passport) => {
               if (err) {
                 return res.status(500).json(err)
               } else {
-                res.json(user)
+                res.json({data: user})
               }
             })
           }
@@ -38,11 +38,10 @@ module.exports = (app, passport) => {
               console.log(user)
               return res.json({
                   message: 'Successfully logged in. Welcome back!',
-                  user: user
+                  data: user
               })
           })
       })
       authenticator(req, res, next)// set function equal to a variable above, then call this function here
   })
 }
-

@@ -5,7 +5,10 @@ import * as ServerApi from './lib/serverApi'
 class DomainDataProvider extends Component {
   state = {
     isLoaded: false,
-    products: []
+    products: [],
+    user: null,
+    email: '',
+    password: ''
   }
 
   componentDidMount () {
@@ -13,22 +16,38 @@ class DomainDataProvider extends Component {
   }
 
   getAllProducts = () =>
-    ServerApi.getAllProducts(products =>
-      this.setState({
-        isLoaded: true,
-        products
-      }))
+    ServerApi.getAllProducts()
+      .then(products =>
+        this.setState({
+          isLoaded: true,
+          products: products
+        }))
 
   addProduct = (product) =>
-    ServerApi.addProduct(product, this.getAllProducts)
+    ServerApi.addProduct(product)
+      .then(this.getAllProducts)
 
   deleteProduct = (product) =>
-    ServerApi.deleteProduct(product, this.getAllProducts)
+    ServerApi.deleteProduct(product)
+      .then(this.getAllProducts)
 
   updateProduct = (product) =>
-    ServerApi.updateProduct(product, this.getAllProducts)
+    ServerApi.updateProduct(product)
+      .then(this.getAllProducts)
 
   findProductById = (productId) => this.state.products.find(p => p._id === productId)
+
+  signUpUser = (user) =>
+    ServerApi.signUpUser(user)
+      .then((savedUser) => this.setState({
+        user: savedUser
+      }))
+
+  loginUser = (email, password) =>
+    ServerApi.loginUser(email, password)
+      .then((loggedInUser) => this.setState({
+        user: loggedInUser
+      }))
 
   render () {
     const domainData = {
@@ -37,10 +56,12 @@ class DomainDataProvider extends Component {
       updateProduct: this.updateProduct,
       addProduct: this.addProduct,
       deleteProduct: this.deleteProduct,
-      findProductById: this.findProductById
+      findProductById: this.findProductById,
+      signUpUser: this.signUpUser,
+      loginUser: this.loginUser
     }
 
-    return this.state.isLoaded ? <Layout domainData={ domainData } /> : null
+    return this.state.isLoaded ? <Layout domainData={domainData} /> : null
   }
 }
 

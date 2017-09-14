@@ -7,7 +7,7 @@ const styles = {
     backgroundColor: 'lightGreen',
     borderRadius: 20,
     padding: 10,
-    textDecoration: 'none',
+    textDecoration: 'none'
   }
 }
 
@@ -17,7 +17,7 @@ const propTypes = {
 }
 
 const NavItem = (props) =>
-  <NavLink to={ props.to } style={ styles.active }>{ props.children }</NavLink>
+  <NavLink to={props.to} style={styles.active}>{props.children}</NavLink>
 
 NavItem.propTypes = propTypes
 
