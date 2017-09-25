@@ -27,8 +27,11 @@ class LoginContainer extends Component {
     event.preventDefault()
     console.log('domain data:', this.props.domainData)
     this.props.domainData.loginUser(this.state.email, this.state.password)
-      .then(() => this.props.history.push('/products'))
-      .then(() => alert("You're logged in now!"))
+      .then((user) => {
+        this.props.history.push('/products')
+        alert(`You're logged in now, ${user.local.firstName}`)
+      })
+      .catch((err) => console.log(err))
   }
 
   render () {

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import * as AppPropTypes from '../../../lib/propTypes'
 import ProductCard from './ProductCard'
 
@@ -13,12 +13,18 @@ const ProductList = (props) =>
 
     <Link to='/products/add'>Add a New Product</Link>
 
-    { props.domainData.products.map(product => <ProductCard
-      key={product._id}
-      product={ product }
-      onDelete={ props.domainData.deleteProduct } />) }
+    { props.domainData.products.map(product =>
+      <ProductCard
+        key={product._id}
+        product={product}
+        onDelete={() => props.domainData.deleteProduct(product._id)}
+        onEdit={() => props.history.push(`/products/edit/${product._id}`)}
+        onAddToCart={() => props.domainData.addToCart(product._id)}
+        isAdmin={props.domainData.isAdmin}
+        loggedIn={props.domainData.loggedIn}
+      />) }
   </div>
 
 ProductList.propTypes = propTypes
 
-export default ProductList
+export default withRouter(ProductList)

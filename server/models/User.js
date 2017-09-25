@@ -7,16 +7,19 @@ const UserSchema = new mongoose.Schema({
     password: 'String',
     firstName: 'String',
     lastName: 'String',
+    isAdmin: Boolean
   },
   cart: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
   orders: [{type: mongoose.Schema.Types.ObjectId, ref: 'Order'}],
-  reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}]
+  reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}],
+  isAdmin: Boolean
 })
 
 UserSchema.methods.loadData = function (data) {
   this.name = data.name || this.name
   this.password = data.password || this.password
   this.address = data.address || this.address
+  this.isAdmin = false
 }
 
 UserSchema.methods.setMetaDates = function () {
@@ -26,12 +29,12 @@ UserSchema.methods.setMetaDates = function () {
 }
 
 UserSchema.methods.generateHash = function (password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
 }
 
 // this compares database password to the one the user entered
 UserSchema.methods.validPassword = function (password) {
-  return bcrypt.compareSync(password, this.local.password);
+  return bcrypt.compareSync(password, this.local.password)
 }
 
 module.exports = mongoose.model('User', UserSchema)

@@ -15,7 +15,7 @@ const LoginForm = (props) =>
       Email: <input type='text'
         value={props.email}
         onChange={props.onEmailChanged} />
-      Password: <input type='text'
+      Password: <input type='password'
         value={props.password}
         onChange={props.onPasswordChanged} />
       <input type='submit' value='Submit' />

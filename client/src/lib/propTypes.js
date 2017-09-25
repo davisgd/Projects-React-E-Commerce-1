@@ -13,5 +13,8 @@ export const domainData = PropTypes.shape({
   products: PropTypes.arrayOf(product).isRequired,
   updateProduct: PropTypes.func.isRequired,
   deleteProduct: PropTypes.func.isRequired,
-  addProduct: PropTypes.func.isRequired
+  addProduct: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  loggedOut: PropTypes.bool.isRequired,
+  isAdmin: PropTypes.bool.isRequired
 }).isRequired

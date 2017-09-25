@@ -43,11 +43,11 @@ class EditProductContainer extends Component {
 
   render () {
     return <EditProductForm
-      onNameChanged={ this.onNameChanged }
-      onCategoryChanged={ this.onCategoryChanged }
-      onImageChanged={ this.onImageChanged }
-      onPriceChanged={ this.onPriceChanged }
-      onSubmit={ this.onSubmit }
+      onNameChanged={this.onNameChanged}
+      onCategoryChanged={this.onCategoryChanged}
+      onImageChanged={this.onImageChanged}
+      onPriceChanged={this.onPriceChanged}
+      onSubmit={this.onSubmit}
     />
   }
 }

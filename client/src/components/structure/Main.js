@@ -6,6 +6,9 @@ import About from '../pages/About'
 import Products from '../pages/products/Products'
 import SignUpFormContainer from '../pages/auth/SignUpFormContainer'
 import LoginContainer from '../pages/auth/LoginContainer'
+import UserProfileContainer from '../pages/userProfile/UserProfileContainer'
+import ShoppingCart from '../pages/shoppingCart/ShoppingCart'
+import Checkout from '../pages/checkout/Checkout'
 
 const propTypes = {
   domainData: AppPropTypes.domainData
@@ -35,6 +38,9 @@ const Main = (props) =>
     <Route path='/products' render={() => <Products domainData={props.domainData} />} />
     <Route path='/signup' render={() => <SignUpFormContainer domainData={props.domainData} />} />
     <Route path='/login' render={() => <LoginContainer domainData={props.domainData} />} />
+    <Route path='/user-profile' render={() => <UserProfileContainer domainData={props.domainData} />} />
+    <Route path='/shopping-cart' render={() => <ShoppingCart domainData={props.domainData} />} />
+    <Route path='/checkout' render={() => <Checkout domainData={props.domainData} />} />
   </main>
 
 Main.propTypes = propTypes

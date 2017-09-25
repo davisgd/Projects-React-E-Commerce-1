@@ -1,4 +1,3 @@
-// File doesn't know anything about state
 const ajaxRequest = (uri, method, body) => {
   const headers = new Headers({
     'Content-Type': 'application/json'
@@ -7,12 +6,23 @@ const ajaxRequest = (uri, method, body) => {
   const options = {
     headers: headers,
     method: method,
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
+    credentials: 'include'
   }
 
   return fetch(`/api/${uri}`, options)
+    .then(handleErrors)
     .then(response => response.json())
     .then(json => json.data)
+}
+
+const handleErrors = response => {
+  if (!response.ok) {
+    const err = Error(response.statusText)
+    err.statusCode = response.status
+    throw err
+  }
+  return response
 }
 
 export const getAllProducts = () => ajaxRequest('products', 'GET')
@@ -21,46 +31,12 @@ export const addProduct = (newProduct) => ajaxRequest('products', 'POST', newPro
 
 export const deleteProduct = (productId) => ajaxRequest(`products/${productId}`, 'DELETE')
 
-export const updateProduct = (product) => ajaxRequest(`/api/products/${product._id}`, 'PUT', product)
+export const updateProduct = (product) => ajaxRequest(`products/${product._id}`, 'PUT', product)
 
-export const signUpUser = (user) => {
-  const headers = new Headers({
-    'Content-Type': 'application/json'
-  })
+export const signUpUser = (user) => ajaxRequest('signup', 'POST', user)
 
-  const options = {
-    headers,
-    method: 'POST',
-    body: JSON.stringify(user)
-  }
+export const loginUser = (email, password) => ajaxRequest('login', 'POST', {email, password})
 
-  return fetch('api/signup', options)
-    .then(response => response.json())
-    .then(json => json.data)
-    .then(data => {
-      console.log(data)
-      return data
-    })
-    .catch(err => console.log(err))
-}
+export const logoutUser = () => ajaxRequest('logout', 'GET')
 
-export const loginUser = (email, password) => {
-  const headers = new Headers({
-    'Content-Type': 'application/json'
-  })
-
-  const options = {
-    headers,
-    method: 'POST',
-    body: JSON.stringify({email, password})
-  }
-
-  return fetch('api/login', options)
-    .then(response => response.json())
-    .then(json => json.data)
-    .then(data => {
-      console.log(data)
-      return data
-    })
-    .catch(err => console.log(err))
-}
+export const getUser = () => ajaxRequest('get_user', 'GET')

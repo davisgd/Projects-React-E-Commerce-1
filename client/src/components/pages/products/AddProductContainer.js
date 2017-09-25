@@ -3,6 +3,13 @@ import React, { Component } from 'react'
 import { domainData } from '../../../lib/propTypes'
 import AddProductForm from './AddProductForm'
 import { withRouter } from 'react-router-dom'
+import injectSheet from 'react-jss'
+
+const enhancer = injectSheet(styles)
+
+const styles = {
+
+}
 
 class AddProductContainer extends Component {
     static propTypes = {
@@ -50,4 +57,4 @@ class AddProductContainer extends Component {
     }
 }
 
-export default withRouter(AddProductContainer)
+export default withRouter(enhancer(AddProductContainer))
